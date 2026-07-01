@@ -1,22 +1,4 @@
-
-# --- ĐOẠN CODE BỔ SUNG ĐỂ TẢI DỮ LIỆU ---
-st.write("---")
-st.subheader("🛠️ Khu vực dành riêng cho Quản trị viên")
-
-# Tạo ô nhập mật khẩu bí mật
-mat_khau = st.text_input("Nhập mật khẩu để quản lý dữ liệu:", type="password")
-
-if mat_khau == "123456":
-    if os.path.isfile(DATA_FILE):
-        with open(DATA_FILE, "rb") as file:
-            st.download_button(
-                label="📥 BẤM VÀO ĐÂY ĐỂ TẢI FILE EXCEL (CSV) VỀ MÁY",
-                data=file,
-                file_name="du_lieu_tu_nguoi_choi.csv",
-                mime="text/csv"
-            )
-    else:
-        st.info("Chưa có người chơi nào bấm chọn nên chưa có dữ liệu.")import streamlit as st
+import streamlit as st
 import random
 import pandas as pd
 import os
@@ -93,3 +75,21 @@ with c2:
 if os.path.isfile(DATA_FILE):
     df = pd.read_csv(DATA_FILE)
     st.success(f"📈 Số mẫu dữ liệu thu thập được hiện tại: **{len(df)}** dòng.")
+
+# --- ĐOẠN CODE MẬT KHẨU QUẢN LÝ DỮ LIỆU ---
+st.write("---")
+st.subheader("🛠️ Khu vực dành riêng cho Quản trị viên")
+
+mat_khau = st.text_input("Nhập mật khẩu để quản lý dữ liệu:", type="password")
+
+if mat_khau == "123456":
+    if os.path.isfile(DATA_FILE):
+        with open(DATA_FILE, "rb") as file:
+            st.download_button(
+                label="📥 BẤM VÀO ĐÂY ĐỂ TẢI FILE EXCEL (CSV) VỀ MÁY",
+                data=file,
+                file_name="du_lieu_tu_nguoi_choi.csv",
+                mime="text/csv"
+            )
+    else:
+        st.info("Chưa có người chơi nào bấm chọn nên chưa có dữ liệu.")
